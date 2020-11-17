@@ -31,7 +31,7 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
         .password("$2y$10$x8u5t8rnE9wX5OriTH1iWurWpVky.SlBEROIzIk6hM9pwn8belxPK").roles("SELLER");
 
     // 開発中は↓の書き方でも良いが，平文でパスワードが保存される
-    auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder().encode("pAssw0rd")).roles("USER");
+    //auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder().encode("pAssw0rd")).roles("USER");
     //auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("pAssw0rd")).roles("ADMIN");
   }
 
@@ -53,7 +53,7 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
     // antMatchers().authenticated がantMatchersへのアクセスに認証を行うことを示す
     // antMatchers()の他にanyRequest()と書くとあらゆるアクセス先を表現できる
     // authenticated()の代わりにpermitAll()と書くと認証処理が不要であることを示す
-    http.authorizeRequests().antMatchers("/**").authenticated();
+    http.authorizeRequests().antMatchers("/sample5/**").authenticated();
     // http.authorizeRequests().anyRequest().authenticated();
     /**
      * 以下2行はh2-consoleを利用するための設定なので，開発が完了したらコメントアウトすることが望ましい
