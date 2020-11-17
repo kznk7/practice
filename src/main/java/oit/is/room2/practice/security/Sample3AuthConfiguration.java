@@ -31,8 +31,8 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
         .password("$2y$10$x8u5t8rnE9wX5OriTH1iWurWpVky.SlBEROIzIk6hM9pwn8belxPK").roles("SELLER");
 
     // 開発中は↓の書き方でも良いが，平文でパスワードが保存される
-    //auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder().encode("pAssw0rd")).roles("USER");
-    //auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("pAssw0rd")).roles("ADMIN");
+    // auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder().encode("pAssw0rd")).roles("USER");
+    // auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("pAssw0rd")).roles("ADMIN");
   }
 
   @Bean
