@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,6 +58,23 @@ public class Sample51Controller {
     // フルーツリストを取得
     ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
     model.addAttribute("fruits2", fruits2);
+    return "sample51.html";
+  }
+
+  @PostMapping("step5")
+  public String sample55(@RequestParam Integer id, @RequestParam String name, @RequestParam Integer price,
+      ModelMap model) {
+    System.out.println("step5");
+    System.out.println(id);
+    System.out.println(name);
+    System.out.println(price);
+    Fruit fruit = new Fruit(id, name, price);
+    // update
+    fMapper.updateById(fruit);
+    // フルーツリストを取得
+    ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+    model.addAttribute("fruits2", fruits2);
+
     return "sample51.html";
   }
 
