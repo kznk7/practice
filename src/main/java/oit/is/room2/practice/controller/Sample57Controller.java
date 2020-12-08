@@ -41,6 +41,18 @@ public class Sample57Controller {
     return "sample57.html";
   }
 
+    /**
+   * JavaScriptからEventSourceとして呼び出されるGETリクエスト SseEmitterを返すことで，PUSH型の通信を実現する
+   *
+   * @return
+   */
+  @GetMapping("step8")
+  public SseEmitter sample58() {
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.shop57.asyncShowFruitsList(sseEmitter);
+    return sseEmitter;
+  }
+
   @GetMapping("step9")
   public String sample59(@RequestParam Integer id, ModelMap model) {
     final Fruit fruit9 = this.shop57.syncBuyFruits(id);
