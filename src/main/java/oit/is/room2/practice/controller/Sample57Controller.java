@@ -41,4 +41,14 @@ public class Sample57Controller {
     return "sample57.html";
   }
 
+  @GetMapping("step9")
+  public String sample59(@RequestParam Integer id, ModelMap model) {
+    final Fruit fruit9 = this.shop57.syncBuyFruits(id);
+    model.addAttribute("fruit9", fruit9);
+
+    final ArrayList<Fruit> fruits7 = shop57.syncShowFruitsList();
+    model.addAttribute("fruits7", fruits7);
+
+    return "sample57.html";
+  }
 }

@@ -27,6 +27,19 @@ public class AsyncShopService57 {
     return fMapper.selectAllFruit();
   }
 
+  @Transactional
+  public Fruit syncBuyFruits(int id) {
+    // 削除対象のフルーツを取得
+    Fruit fruit = fMapper.selectById(id);
+
+    // 削除
+    fMapper.deleteById(id);
+
+    this.dbUpdated = true;
+
+    return fruit;
+  }
+
   /**
    * dbUpdatedがtrueのときのみブラウザにDBからフルーツリストを取得して送付する
    *

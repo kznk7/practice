@@ -20,7 +20,7 @@
           var idx = "<td>" + i + "</td>";
           var f_name = "<td>" + fruits_list[i].name + "</td>";
           var f_price = "<td>" + fruits_list[i].price + "</td>";
-          var f_proc = "<td>" + "購入" + "</td>"
+          var f_proc = "<td>" + "<a href='/sample5/step9?id=" + fruits_list[i].id + "'>購入</a>" + "</td>"
           fruits_table = fruits_table + bgn_tr + idx + f_name + f_price + f_proc + end_tr;
 
         }
@@ -54,13 +54,15 @@
             <td>[[${stat.index}]]</td>
             <td>[[${fruit.name}]]</td>
             <td>[[${fruit.price}]]</td>
-            <td>購入</td>
+            <td><a th:href="@{/sample5/step9(id=${fruit.id})}">購入</a></td>
           </tr>
         </span>
       </tbody>
     </table>
   </div>
-
+  <div th:if="${fruit9}">
+    [[${fruit9.name}]]を[[${fruit9.price}]]円で購入しました
+  </div>
 </body>
 
 </html>
