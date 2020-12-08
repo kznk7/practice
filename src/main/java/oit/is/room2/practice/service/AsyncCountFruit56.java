@@ -8,6 +8,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import oit.is.room2.practice.model.Fruit;
+
 @Service
 public class AsyncCountFruit56 {
   int count = 1;
@@ -32,4 +34,24 @@ public class AsyncCountFruit56 {
     }
   }
 
+@Async
+public void pushFruit(SseEmitter emitter) {
+  logger.info("pushFruit start");
+  Fruit fruit = new Fruit();
+  fruit.setName("桃");
+  fruit.setPrice(300);
+  // 10回sendすると一度接続を終了する．その後ブラウザを開いていればブラウザから自動的に再接続されてまた10回sendされる（以降繰り返し）
+  for (int i = 0; i < 10; i++) {
+    try {
+      logger.info("send(fruit)");
+      TimeUnit.SECONDS.sleep(1);// 1秒STOP
+      emitter.send(fruit);// fruitのJSONオブジェクトがクライアントに送付される
+    } catch (Exception e) {
+      // 例外の名前とメッセージだけ表示する
+      logger.warn("Exception:" + e.getClass().getName() + ":" + e.getMessage());
+      // 例外が発生したらカウントとsendを終了する
+      break;
+    }
+  }
+}
 }
